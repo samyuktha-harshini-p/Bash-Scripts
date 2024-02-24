@@ -1,0 +1,8 @@
+#Files Cleanup
+
+
+#!/bin/bash
+
+find /root/Users_Login_Data/*.txt -type f -cmin +60
+
+find /root/Users_Login_Data/*.txt -type f -cmin +60 -delete

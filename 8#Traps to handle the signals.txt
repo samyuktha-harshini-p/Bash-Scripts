@@ -1,0 +1,43 @@
+#Traps to handle the signals
+
+Write a bash script which will fulfill the below requirements:
+
+- Create a script which will be running an infinite while loop , and will print "Running..."
+
+- After printing "Running..." inside the loop, it will wait for user input, until we give any input it will keep on waiting.
+
+- The script must not exit on CTRL+C OR Control-Z , so if any user try to kill the script using CTRL+C OR Control-Z, it must reset itself to start the while loop again.
+
+- Script will only exit when user will type "EXIT" and press enter.
+
+#!/bin/bash
+
+
+trap 'echo "Control-C cannot terminate this script."' INT
+
+trap 'echo "Control-Z cannot terminate this script."' TSTP
+
+
+echo "Enter a string (type 'EXIT' to exit)"
+
+while (( 1 ))
+
+do
+
+       echo -n "Running..."
+
+       read user_input
+
+
+       if [[ "$user_input" = "EXIT" ]]
+
+       then
+
+           break
+
+       fi
+
+done
+
+
+echo "Exiting as string matches"

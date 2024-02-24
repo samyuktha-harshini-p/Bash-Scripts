@@ -1,0 +1,89 @@
+#Package Manager with Case
+
+Write a bash script which will fulfill the below requirements:
+
+- Create a script which will ask the user to select a method from the given option menu : search or install or remove or quit
+
+- Then script will ask the user to provide Linux package name as an input that user want to search/install/remove.
+
+- If user has selected the search, then script will search for the given package and print back the results to the user on screen.
+
+- If user has selected the install, then script will search for the given package and install the package for the user.
+
+- If user has selected the search, then script will search for the given package and remove the package from local system.
+
+- You have to use Case Statement to design the menu for the users to select the options from search/install/remove/quit.
+ 
+#!/bin/bash
+
+
+PS3="Select the operation: "
+
+
+select opt in search install remove quit; do
+
+  case $opt in
+
+    search)
+
+      echo "You have selected the $opt"
+
+      echo -n "Enter the package name: "
+
+      read package_name
+
+      echo "Searching for package : $package_name"
+
+      yum search $package_name
+
+      break
+
+      ;;
+
+    install)
+
+      echo "You have selected the $opt"
+
+      echo -n "Enter the package name: "
+
+      read package_name
+
+      echo "Installing the package : $package_name"
+
+      yum -y install $package_name
+
+      break
+
+      ;;
+
+    remove)
+
+      echo "You have selected the $opt"
+
+      echo -n "Enter the package name: "
+
+      read package_name
+
+      echo "Remove package : $package_name"
+
+      yum -y remove $package_name
+
+      break
+
+      ;;
+
+    quit)
+
+      break
+
+      ;;
+
+    *)
+
+      echo "Invalid option $REPLY"
+
+      ;;
+
+  esac
+
+done

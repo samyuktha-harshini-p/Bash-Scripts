@@ -1,0 +1,90 @@
+#Package manager with if/else
+Write a bash script which will fulfill the below requirements:
+
+- Create a script which will ask the user to type a method that user want to use: search or install or remove
+
+- Then script will ask the user to provide Linux package name as an input that user want to search/install or remove.
+
+- If user has selected the search, then script will search for the given package and print back the results to the user on screen.
+
+- If user has selected the install, then script will search for the given package and install the package for the user.
+
+- If user has selected the search, then script will search for the given package and remove the package from local system.
+
+- You have to create 3 different functions for search, install and remove.
+
+- You have to use If/Else conditions to verify which function needs to be used as per user input.
+
+
+#!/bin/bash
+
+
+search() {
+
+echo "************************************"
+
+echo "Searching for package : $package_name"
+
+yum search $package_name
+
+}
+
+
+
+install() {
+
+echo "************************************"
+
+echo "Installing package : $package_name"
+
+yum -y install $package_name
+
+}
+
+
+remove(){
+
+echo "************************************"
+
+echo "Remove package : $package_name"
+
+yum -y remove $package_name
+
+}
+
+
+
+echo "Please enter method you want to use: search or install or remove"
+
+read method
+
+echo "Enter the package name: "
+
+read package_name
+
+
+if [[ $method == "search" ]]
+
+then
+
+    search
+
+elif [[ $method == "install" ]]
+
+then
+
+    install
+
+elif [[ $method == "remove" ]]
+
+then
+
+   remove
+
+else
+
+    echo -e "Please select valid method:\nsearch or install"
+
+fi
+
+
